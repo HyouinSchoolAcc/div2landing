@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-do
 import { ChakraProvider, extendTheme, Box, Button } from "@chakra-ui/react";
 import { useState, useMemo } from "react";
 
+import BlogList  from './pages/BlogList';
+import BlogPost  from './pages/BlogPost';
 import Sidebar from "./components/Sidebar";
 import Landing from "./pages/Landing";
 import FriendsList from "./pages/FriendsList";
@@ -67,7 +69,14 @@ function MainContent({ activeChats, setActiveChats }) {
           Home
         </Button>
       </Box>
-
+      <Box position="fixed" top="10px" right="10px" zIndex="2000" display="flex" gap="2">
+    <Button as={Link} to="/" colorScheme="blue">
+      Home
+    </Button>
+    <Button as={Link} to="/blog" colorScheme="teal">
+      Blog
+    </Button>
+  </Box>
       {/* The main content container, offset by sidebarWidth */}
       <Box
         ml={`${sidebarWidth}px`}
@@ -80,7 +89,8 @@ function MainContent({ activeChats, setActiveChats }) {
         <Route path="/about" element={<About />} />
         <Route path="/help" element={<Help />} />
         <Route path="/group" element={<GroupDiscussion />} />
-
+        <Route path="/blog"        element={<BlogList />} />
+        <Route path="/blog/:slug"  element={<BlogPost />} />
           <Route path="/" element={<Landing />} />
           <Route
             path="/friends"
