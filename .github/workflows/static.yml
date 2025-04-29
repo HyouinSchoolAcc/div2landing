@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Install MDX dependencies
+        run: npm install @mdx-js/rollup @mdx-js/react
+        
       - name: Build React app
         run: npm run build
         
@@ -47,8 +50,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload build output directory (usually "build" or "dist")
-          path: './build'
+          # Upload Vite's output directory
+          path: './dist'
           
       - name: Deploy to GitHub Pages
         id: deployment
